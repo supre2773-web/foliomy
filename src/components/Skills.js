@@ -2,12 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaReact, FaNodeJs, FaPython, FaPhp, FaHtml5, FaCss3Alt, FaGitAlt, FaFigma, FaWordpress, FaCamera } from 'react-icons/fa';
 import { SiFlutter, SiSpringboot } from 'react-icons/si';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 
 const Skills = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const skillCategories = [
     {
-      title: 'Frontend',
-      color: 'from-blue-500 to-cyan-500',
+      title: t.skills.frontend,
       skills: [
         { name: 'React', level: 90, icon: FaReact },
         { name: 'Flutter', level: 85, icon: SiFlutter },
@@ -17,8 +21,7 @@ const Skills = () => {
       ]
     },
     {
-      title: 'Backend',
-      color: 'from-purple-500 to-pink-500',
+      title: t.skills.backend,
       skills: [
         { name: 'NodeJS', level: 90, icon: FaNodeJs },
         { name: 'Spring Boot', level: 85, icon: SiSpringboot },
@@ -27,8 +30,7 @@ const Skills = () => {
       ]
     },
     {
-      title: 'Tools',
-      color: 'from-green-500 to-teal-500',
+      title: t.skills.tools,
       skills: [
         { name: 'Git', level: 90, icon: FaGitAlt },
         { name: 'Figma', level: 85, icon: FaFigma },
@@ -48,12 +50,10 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Skills & Expertise
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {t.skills.title}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -66,9 +66,8 @@ const Skills = () => {
               transition={{ duration: 0.5, delay: catIndex * 0.2 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 rounded-2xl blur-xl"></div>
-              <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/50 transition-all">
-                <h3 className={`text-2xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+              <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-red-600/20 hover:border-red-600/50 transition-all">
+                <h3 className="text-2xl font-bold mb-6 text-red-600">
                   {category.title}
                 </h3>
 
@@ -83,7 +82,7 @@ const Skills = () => {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <skill.icon className={`text-xl bg-gradient-to-r ${category.color} bg-clip-text text-transparent`} />
+                          <skill.icon className="text-xl text-red-600" />
                           <span className="text-gray-300 font-medium">{skill.name}</span>
                         </div>
                         <span className="text-gray-400 text-sm">{skill.level}%</span>
@@ -95,7 +94,7 @@ const Skills = () => {
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: catIndex * 0.2 + skillIndex * 0.1 }}
-                          className={`h-full bg-gradient-to-r ${category.color} rounded-full relative`}
+                          className="h-full bg-red-600 rounded-full relative"
                         >
                           <motion.div
                             animate={{
@@ -113,19 +112,6 @@ const Skills = () => {
                     </motion.div>
                   ))}
                 </div>
-
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br ${category.color} opacity-20 rounded-full blur-2xl`}
-                ></motion.div>
               </div>
             </motion.div>
           ))}

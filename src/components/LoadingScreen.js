@@ -22,8 +22,8 @@ const LoadingScreen = () => {
           }}
           className="w-24 h-24 mx-auto mb-8 relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-50"></div>
-          <div className="absolute inset-2 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center text-3xl font-bold text-white">
+          <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-30"></div>
+          <div className="absolute inset-2 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center text-3xl font-bold text-white">
             WJ
           </div>
         </motion.div>
@@ -31,7 +31,7 @@ const LoadingScreen = () => {
         <motion.h2
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent"
+          className="text-2xl font-bold text-red-600"
         >
           Loading...
         </motion.h2>
@@ -48,7 +48,7 @@ const LoadingScreen = () => {
                 repeat: Infinity,
                 delay: i * 0.2
               }}
-              className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+              className="w-3 h-3 bg-red-600 rounded-full"
             ></motion.div>
           ))}
         </div>

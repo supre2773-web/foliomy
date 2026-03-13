@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 
 const About = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,12 +37,10 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              About Me
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {t.about.title}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -50,27 +53,19 @@ const About = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="relative p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-600/10 backdrop-blur-sm border border-blue-500/20"
-              style={{
-                boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.15)'
-              }}
+              className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-red-600/20"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 rounded-2xl blur-xl"></div>
               <p className="text-gray-300 text-lg leading-relaxed relative z-10">
-                Je suis développeur web passionné par le design UX/UI et le développement d'applications web performantes et sécurisées.
+                {t.about.description1}
               </p>
             </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="relative p-8 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-600/10 backdrop-blur-sm border border-purple-500/20"
-              style={{
-                boxShadow: '0 8px 32px 0 rgba(168, 85, 247, 0.15)'
-              }}
+              className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-red-600/20"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 rounded-2xl blur-xl"></div>
               <p className="text-gray-300 text-lg leading-relaxed relative z-10">
-                Je me spécialise dans la création d'API robustes, d'architectures backend solides et d'interfaces utilisateur modernes.
+                {t.about.description2}
               </p>
             </motion.div>
           </motion.div>
@@ -83,16 +78,16 @@ const About = () => {
             className="space-y-6"
           >
             {[
-              { icon: FaMapMarkerAlt, label: 'Location', value: 'Antananarivo, Madagascar' },
-              { icon: FaEnvelope, label: 'Email', value: 'willyjacquino@gmail.com' },
-              { icon: FaPhone, label: 'Phone', value: '+261 34 50 557 68' }
+              { icon: FaMapMarkerAlt, label: t.about.location, value: t.about.locationValue },
+              { icon: FaEnvelope, label: t.about.email, value: t.about.emailValue },
+              { icon: FaPhone, label: t.about.phone, value: t.about.phoneValue }
             ].map((item, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.02, x: 10 }}
-                className="flex items-center gap-4 p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/50 transition-all"
+                className="flex items-center gap-4 p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-red-600/20 hover:border-red-600/50 transition-all"
               >
-                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
+                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-600">
                   <item.icon className="text-white text-xl" />
                 </div>
                 <div>
@@ -103,22 +98,11 @@ const About = () => {
             ))}
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="relative p-8 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-600/20 backdrop-blur-sm border border-blue-500/30 overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              className="relative p-8 rounded-2xl bg-red-600/10 backdrop-blur-sm border border-red-600/30 overflow-hidden"
             >
-              <motion.div
-                animate={{
-                  rotate: [0, 360]
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-full blur-3xl"
-              ></motion.div>
-              <p className="text-center text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent relative z-10">
-                Let's Build Something Amazing Together!
+              <p className="text-center text-2xl font-bold text-red-600 relative z-10">
+                {t.about.cta}
               </p>
             </motion.div>
           </motion.div>

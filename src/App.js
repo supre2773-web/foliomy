@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -24,17 +25,19 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      <ParticlesBackground />
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
+        <ParticlesBackground />
+        <Navbar />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }
 

@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
+import { loadSlim } from 'tsparticles-slim';
 
 const ParticlesBackground = () => {
   const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
+    await loadSlim(engine);
   }, []);
 
   return (
@@ -31,7 +31,7 @@ const ParticlesBackground = () => {
             }
           },
           color: {
-            value: ['#3b82f6', '#8b5cf6', '#ec4899']
+            value: ['#dc2330', '#ffffff']
           },
           shape: {
             type: 'circle'
@@ -59,7 +59,7 @@ const ParticlesBackground = () => {
           links: {
             enable: true,
             distance: 150,
-            color: '#3b82f6',
+            color: '#dc2330',
             opacity: 0.2,
             width: 1
           },

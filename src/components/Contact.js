@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaPaperPlane } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 
 const Contact = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,14 +49,12 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Get In Touch
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {t.contact.title}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
           <p className="text-gray-400 mt-4 text-lg">
-            Let's discuss your next project
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -63,16 +66,14 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-blue-500/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 rounded-2xl blur-xl"></div>
-
+            <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-red-600/20">
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                  Let's Connect
+                <h3 className="text-2xl font-bold mb-6 text-red-600">
+                  {t.contact.letConnect}
                 </h3>
 
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  Je suis toujours ouvert aux nouvelles opportunités et collaborations. N'hésitez pas à me contacter pour discuter de vos projets.
+                  {t.contact.description}
                 </p>
 
                 <div className="space-y-4">
@@ -81,9 +82,9 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 10 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/30 hover:border-blue-500/50 transition-all"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-red-600/10 border border-red-600/30 hover:border-red-600/50 transition-all"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-600">
                       <FaGithub className="text-white text-xl" />
                     </div>
                     <div>
@@ -97,9 +98,9 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 10 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-600/10 border border-purple-500/30 hover:border-purple-500/50 transition-all"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-red-600/10 border border-red-600/30 hover:border-red-600/50 transition-all"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-600">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-600">
                       <FaLinkedin className="text-white text-xl" />
                     </div>
                     <div>
@@ -109,19 +110,6 @@ const Contact = () => {
                   </motion.a>
                 </div>
               </div>
-
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 rounded-full blur-3xl"
-              ></motion.div>
             </div>
           </motion.div>
 
@@ -131,13 +119,11 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-purple-500/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 rounded-2xl blur-xl"></div>
-
+            <form onSubmit={handleSubmit} className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-red-600/20">
               <div className="relative z-10 space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">
-                    Nom
+                    {t.contact.name}
                   </label>
                   <input
                     type="text"
@@ -146,14 +132,14 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-blue-500/30 focus:border-blue-500 outline-none text-white transition-all"
-                    placeholder="Votre nom"
+                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-red-600/30 focus:border-red-600 outline-none text-white transition-all"
+                    placeholder={t.contact.namePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">
-                    Email
+                    {t.contact.email}
                   </label>
                   <input
                     type="email"
@@ -162,14 +148,14 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-blue-500/30 focus:border-blue-500 outline-none text-white transition-all"
-                    placeholder="votre@email.com"
+                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-red-600/30 focus:border-red-600 outline-none text-white transition-all"
+                    placeholder={t.contact.emailPlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-gray-300 mb-2 font-medium">
-                    Message
+                    {t.contact.message}
                   </label>
                   <textarea
                     id="message"
@@ -178,8 +164,8 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-blue-500/30 focus:border-blue-500 outline-none text-white transition-all resize-none"
-                    placeholder="Votre message..."
+                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-red-600/30 focus:border-red-600 outline-none text-white transition-all resize-none"
+                    placeholder={t.contact.messagePlaceholder}
                   ></textarea>
                 </div>
 
@@ -188,7 +174,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl text-white font-semibold shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full px-8 py-4 bg-red-600 rounded-xl text-white font-semibold flex items-center justify-center gap-2 disabled:opacity-50 hover:bg-red-700 transition-colors"
                 >
                   {isSubmitting ? (
                     <>
@@ -197,12 +183,12 @@ const Contact = () => {
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                       ></motion.div>
-                      Envoi en cours...
+                      {t.contact.sending}
                     </>
                   ) : (
                     <>
                       <FaPaperPlane />
-                      Envoyer le message
+                      {t.contact.send}
                     </>
                   )}
                 </motion.button>
@@ -213,23 +199,10 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 rounded-xl bg-green-500/20 border border-green-500/50 text-green-400 text-center"
                   >
-                    Message envoyé avec succès!
+                    {t.contact.success}
                   </motion.div>
                 )}
               </div>
-
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, -180, -360]
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-500 to-pink-600 opacity-20 rounded-full blur-3xl"
-              ></motion.div>
             </form>
           </motion.div>
         </div>
